@@ -29,6 +29,13 @@ namespace Sea.Ecommerce.Api
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            // Logging
+            builder.Services.AddApplicationInsightsTelemetry(options: options =>
+            {
+                options.ConnectionString = builder.Configuration.GetValue<string>("ApplicationInsights:ConnectionString");
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
