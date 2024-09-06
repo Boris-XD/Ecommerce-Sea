@@ -29,5 +29,16 @@ namespace Sea.Ecommerce.Api.Controllers
 
             return Ok(await _storeService.GetAllAsync());
         }
+
+        [HttpGet("mock")]
+        public IActionResult GetAllMock()
+        {
+            var idLog = Guid.NewGuid();
+
+            _logger.LogError($"Log Error Getall Id:{idLog}, time:{DateTime.UtcNow}");
+            _logger.LogCritical($"Log Critical Getall Id:{idLog}, time:{DateTime.UtcNow}");
+
+            return Ok(_storeService.GetAllMockAsync());
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.Azure.KeyVault;
 using Microsoft.EntityFrameworkCore;
 using Sea.Ecommerce.Repository;
 using Sea.Ecommerce.Repository.Stores;
@@ -31,10 +32,18 @@ namespace Sea.Ecommerce.Api
             builder.Services.AddControllers();
 
             // Logging
-            builder.Services.AddApplicationInsightsTelemetry(options: options =>
+            /*if (builder.Environment.IsProduction())
             {
-                options.ConnectionString = builder.Configuration.GetValue<string>("ApplicationInsights:ConnectionString");
-            });
+                var keyVaultUrl = builder.Configuration.GetSection("keyVault:keyVauktUrl");
+                var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(new AzureServiceTokenProvider().));
+            }
+            else
+            {*/
+                builder.Services.AddApplicationInsightsTelemetry(options: options =>
+                {
+                    options.ConnectionString = builder.Configuration.GetValue<string>("ApplicationInsights:ConnectionString");
+                });
+            // }
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

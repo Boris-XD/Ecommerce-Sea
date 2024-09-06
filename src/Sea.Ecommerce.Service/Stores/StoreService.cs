@@ -21,5 +21,12 @@ namespace Sea.Ecommerce.Service.Stores
 
             return _mapper.Map<ICollection<StoreResult>>(result);
         }
+
+        public ICollection<StoreResult> GetAllMockAsync()
+        {
+            var result = _storeRepository.GetAllMockAsync();
+
+            return _mapper.Map<ICollection<StoreResult>>(result);
+        }
     }
 }

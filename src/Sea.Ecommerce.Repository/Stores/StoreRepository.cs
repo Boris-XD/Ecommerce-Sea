@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sea.Ecommerce.Repository.Helper;
 using Sea.Ecommerce.Repository.Models;
 
 namespace Sea.Ecommerce.Repository.Stores
@@ -38,6 +39,11 @@ namespace Sea.Ecommerce.Repository.Stores
         {
             _storeContext.Stores.Update(store);
             await _storeContext.SaveChangesAsync();
+        }
+
+        public IEnumerable<Store> GetAllMockAsync()
+        {
+            return StoreMock.GetMockStores();
         }
     }
 }

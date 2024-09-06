@@ -10,5 +10,7 @@ namespace Sea.Ecommerce.Service.Stores
     public interface IStoreService
     {
         Task<ICollection<StoreResult>> GetAllAsync();
+
+        ICollection<StoreResult> GetAllMockAsync();
     }
 }
